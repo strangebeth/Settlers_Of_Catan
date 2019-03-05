@@ -1,0 +1,31 @@
+/** In the game Catan, each player has the option to roll a six sided die **/
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class RollTheDice : MonoBehaviour {
+
+    public RedDie redScript;
+    public YellowDie yellowScript;
+    public PlayerBuild playerBuild;
+
+	public void RollDice()
+    {
+        int dieOneValue = DieRoller.RollDie();
+        int dieTwoValue = DieRoller.RollDie();
+        int diceTotalValue = dieOneValue + dieTwoValue; 
+
+        Debug.Log("This is die one value: " + dieOneValue);
+        Debug.Log("This is die two value: " + dieTwoValue);
+        Debug.Log("This is the total: " + diceTotalValue);
+
+        redScript.SetDieFace(dieOneValue);
+        yellowScript.SetDieFace(dieTwoValue);
+
+        playerBuild.value = diceTotalValue;
+        
+    }
+
+}
