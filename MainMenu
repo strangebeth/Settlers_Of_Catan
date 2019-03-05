@@ -1,0 +1,22 @@
+/** Navigate to Main Menu ** /
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement; // whenever we want to switch between scenes
+
+public class MainMenu : MonoBehaviour {
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene("HomeScreen");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    
+}
