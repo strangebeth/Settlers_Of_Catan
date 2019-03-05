@@ -1,0 +1,51 @@
+/** This will ensure that when the user clicks "quit" that they do want to exit the game **/ 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI; 
+
+public class ConfirmQuit : MonoBehaviour {
+
+    public CanvasGroup buttonCanvasGroup;
+    public CanvasGroup quitGameGroup; 
+
+private void Awake()
+    {
+        DoConfirmQuitNo();
+    }
+
+    public void DoConfirmQuitNo()
+    {
+        Debug.Log("Head back to the game!");
+
+        buttonCanvasGroup.alpha = 1;
+        buttonCanvasGroup.interactable = true;
+        buttonCanvasGroup.blocksRaycasts = true;
+
+        quitGameGroup.alpha = 0;
+        quitGameGroup.interactable = false;
+        quitGameGroup.blocksRaycasts = false; 
+
+       
+    }
+
+    public void DoConfirmQuitYes()
+    {
+        Debug.Log("See you next time!");
+        Application.Quit();
+    }
+
+    public void DoQuit()
+    {
+        Debug.Log("Check for quit confirmation.");
+
+        buttonCanvasGroup.alpha = 0.5f;
+        buttonCanvasGroup.interactable = false;
+        buttonCanvasGroup.blocksRaycasts = false;
+
+        quitGameGroup.alpha = 1;
+        quitGameGroup.interactable = true;
+        quitGameGroup.blocksRaycasts = true; 
+    }
+
+}
