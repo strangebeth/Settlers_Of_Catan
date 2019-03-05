@@ -1,0 +1,62 @@
+/** There is a player name entry screen in this game, which this code is responsible for **/ 
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class PlayerName : MonoBehaviour {
+
+    public InputField whiteInput;
+    public InputField blueInput;
+    public InputField orangeInput;
+    public InputField redInput;
+    public Text warningText;
+    public Button continueBtn;
+
+    // Use this for initialization
+    public void startGame() { 
+        
+        // checking for white player's name
+        if (whiteInput.text == "")
+        {
+            SceneManager.LoadScene(1); 
+            Debug.Log("Please enter a name");
+           
+         
+        } else {
+            PlayerPrefs.SetString("whitePlayer", whiteInput.text);
+        }
+
+        // checking for blue player's name
+        if (blueInput.text == "")
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Please enter a name"); 
+        } else {
+            PlayerPrefs.SetString("bluePlayer", blueInput.text); 
+        }
+
+        // checking for orange player's name
+        if (orangeInput.text == "")
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Please enter a name"); 
+        } else {
+            PlayerPrefs.SetString("orangePlayer", orangeInput.text);
+        }
+
+        // checking for red player's name
+        if (redInput.text == "")
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Please enter a name"); 
+        } else {
+            PlayerPrefs.SetString("redPlayer", redInput.text);
+        }
+
+    }
+   
+	
+}
