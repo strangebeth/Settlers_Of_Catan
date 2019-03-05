@@ -1,0 +1,251 @@
+/** This code needs cleaned up **/ 
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI; 
+
+public class PlayerBuild : MonoBehaviour { 
+
+    public Toggle[] toggles;
+    public GameObject[] imageArray;
+
+    public GameObject[] settlementArray;
+    public Toggle[] settlementToggles; 
+
+    public static GameObject image;
+    public GameObject settlements; 
+    public Toggle toggle;
+    public Toggle roadToggle; 
+
+    public bool canRedBuildRoad = false;
+    public bool canBlueBuildRoad = false;
+    public bool canOrangeBuildRoad = false;
+    public bool canWhiteBuildRoad = false; 
+
+    public Button redRoll;
+    public Button redBuild;
+    public CanvasGroup redBuildGroup;
+    public Button redExit;
+    public Button redRoad;
+    public Button redCity;
+    public Button redSettlement;
+
+    public Button blueRoll;
+    public Button blueBuild;
+    public CanvasGroup blueBuildGroup;
+    public Button blueExit;
+    public Button blueRoad;
+    public Button blueCity;
+    public Button blueSettlement; 
+ 
+
+    public Button orangeRoll;
+    public Button orangeBuild;
+    public CanvasGroup orangeBuildGroup;
+    public Button orangeExit;
+    public Button orangeRoad;
+    public Button orangeCity;
+    public Button orangeSettlement; 
+     
+
+    public Button whiteRoll;
+    public Button whiteBuild;
+    public CanvasGroup whiteBuildGroup;
+    public Button whiteExit;
+    public Button whiteRoad;
+    public Button whiteCity;
+    public Button whiteSettlement; 
+
+    public int value;
+ 
+
+    private void Awake()
+    {
+        GameScreen(); 
+    }
+
+    public void GameScreen()
+    {
+        redBuildGroup.alpha = 0;
+        redBuildGroup.interactable = false;
+        redBuildGroup.blocksRaycasts = false;
+
+        blueBuildGroup.alpha = 0;
+        blueBuildGroup.interactable = false;
+        blueBuildGroup.blocksRaycasts = false;
+
+        orangeBuildGroup.alpha = 0;
+        orangeBuildGroup.interactable = false;
+        orangeBuildGroup.blocksRaycasts = false;
+
+        whiteBuildGroup.alpha = 0;
+        whiteBuildGroup.interactable = false;
+        whiteBuildGroup.blocksRaycasts = false;
+
+        for (int i = 0; i < 72; i++)
+        {
+            image = imageArray[i];
+
+            image.SetActive(false);
+           
+        }
+
+        for (int i = 0; i < 1; i++)
+        {
+            settlements = settlementArray[i];
+
+            settlements.SetActive(false); 
+        }
+         
+
+    }
+    private void Start()
+    {
+       
+        redRoll.onClick.AddListener(delegate { RedPlayerRoll(value); });
+        blueRoll.onClick.AddListener(delegate { BluePlayerRoll(value); });
+        whiteRoll.onClick.AddListener(delegate { WhitePlayerRoll(value); });
+        orangeRoll.onClick.AddListener(delegate { OrangePlayerRoll(value); });
+
+        redBuild.onClick.AddListener(RedBuildOnClick);
+        orangeBuild.onClick.AddListener(OrangeBuildOnClick);
+        whiteBuild.onClick.AddListener(WhiteBuildOnClick);
+        blueBuild.onClick.AddListener(BlueBuildOnClick);
+
+        redRoad.onClick.AddListener(RedRoadOnClick);
+        redSettlement.onClick.AddListener(RedSettlementOnClick); 
+
+        whiteExit.onClick.AddListener(GameScreen);
+        blueExit.onClick.AddListener(GameScreen);
+        orangeExit.onClick.AddListener(GameScreen);
+        redExit.onClick.AddListener(GameScreen);
+
+
+    }
+
+    private void RedBuildOnClick()
+    {
+        
+        redBuildGroup.alpha = 1;
+        redBuildGroup.interactable = true;
+        redBuildGroup.blocksRaycasts = true;
+
+        
+    }
+
+    private void WhiteBuildOnClick()
+    {
+        whiteBuildGroup.alpha = 1;
+        whiteBuildGroup.interactable = true;
+        whiteBuildGroup.blocksRaycasts = true;
+    }
+
+    private void OrangeBuildOnClick()
+    {
+        orangeBuildGroup.alpha = 1;
+        orangeBuildGroup.interactable = true;
+        orangeBuildGroup.blocksRaycasts = true;
+    }
+
+    private void BlueBuildOnClick()
+    {
+        blueBuildGroup.alpha = 1;
+        blueBuildGroup.interactable = true;
+        blueBuildGroup.blocksRaycasts = true;
+    }
+    
+
+    // This method fires when the red player wants to place a road 
+
+        public void ToggleClick()
+    {
+        if (canRedBuildRoad == true)
+        {
+            RedBuildOnClick();
+        } else
+        {
+            canRedBuildRoad = false; 
+        }
+
+
+    }
+
+    public void RedSettlementOnClick()
+    {
+        canRedBuildRoad = true;
+
+        redBuildGroup.alpha = 0;
+        redBuildGroup.interactable = false;
+        redBuildGroup.blocksRaycasts = false;
+
+        for(int i = 0; i < 1; i++)
+        {
+            settlements = settlementArray[i];
+            roadToggle = settlementToggles[i];
+
+            if (toggle.isOn == true)
+            {
+                settlements.SetActive(true); 
+            } else
+            {
+                image.SetActive(false); 
+            }
+        }
+    }
+
+    public void RedRoadOnClick()
+    {
+
+        canRedBuildRoad = true; 
+
+        redBuildGroup.alpha = 0;
+        redBuildGroup.interactable = false;
+        redBuildGroup.blocksRaycasts = false;
+
+        for (int i = 0; i < 72; i++)
+        {
+            image = imageArray[i];
+            toggle = toggles[i];
+            
+            if (toggle.isOn == true)
+            {
+                image.SetActive(true);
+                Debug.Log("Red player is placing a road"); 
+            } else
+            {
+                image.SetActive(false);
+            }
+         
+        }
+    }
+
+
+    // The below methods can be moved to the RollTheDice class. Will save for later ~ SG 
+
+    public void RedPlayerRoll(int value)
+    {
+        Debug.Log("Red player rolled a " + value); 
+    }
+
+    public void BluePlayerRoll(int value)
+    {
+        Debug.Log("Blue player rolled a " + value);
+ 
+    }
+
+    public void WhitePlayerRoll(int value)
+    {
+        Debug.Log("White player rolled a " + value);
+ 
+    }
+
+    public void OrangePlayerRoll(int value)
+    {
+        Debug.Log("Orange player rolled a " + value);
+
+         
+    }
+
+    
+}
