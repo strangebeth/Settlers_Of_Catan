@@ -1,0 +1,25 @@
+/** Retrieving player name from input **/ 
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GetPlayerName : MonoBehaviour
+{
+    public Text whiteText;
+    public Text blueText;
+    public Text redText;
+    public Text orangeText;
+
+    public void Start()
+    {
+
+        whiteText.text = PlayerPrefs.GetString("whitePlayer");
+        blueText.text = PlayerPrefs.GetString("bluePlayer");
+        redText.text = PlayerPrefs.GetString("redPlayer");
+        orangeText.text = PlayerPrefs.GetString("orangePlayer");
+
+    }
+
+}
