@@ -1,0 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using System; 
+
+public class DieRoller  {
+
+    private static Random random = new Random(); 
+
+	public static int RollDie()
+    {
+        return random.Next(0,6) + 1; 
+    }
+
+}
